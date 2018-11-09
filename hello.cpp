@@ -1,6 +1,5 @@
-
-//  hello.cpp
-//  g++ -o hello hello.cpp
+//  file name : hello.cpp
+//  g++ -g -Wall -o hello hello.cpp
 // ./hello
 
 //-----all the headers
@@ -42,6 +41,7 @@ classParent::~classParent(){
 }
 
 //methods
+
 void classParent::resultDisplay(){
 	std::string Name;
 	unsigned int Age;
@@ -89,16 +89,17 @@ void printlist(struct Node *n) {
 
  int main() {
 
-	system("clear");
+	system("clear"); // clears the screen
 	printf("Hello world!\n");
-	std::cout << "C++ Programming Language." << std::endl;
-	display ("C++ is very tough language");
-
+	std::cout << "C++ is a tough Programming Language." << std::endl;
+	display ("C++ is a very tough language and is enjoyable one. This done using function.");
+	
+	 // creating an object for class 
 	classParent object1;
 	object1.resultDisplay();
 
-  	std::unique_ptr<classParent> badASS (new classParent);
-	badASS -> resultDisplay();
+  	std::unique_ptr<classParent> object2 (new classParent);
+	object2 -> resultDisplay();
 
 	// struct example
 
@@ -112,8 +113,8 @@ void printlist(struct Node *n) {
 	struct animalStruct *catptr, cat;
 	catptr = &cat;
 	std::cout << "Enter the number of legs cat has.." << std::endl;
-  std::cin >> catptr -> noOflegs;
-  structDisplay(*catptr);
+  	std::cin >> catptr -> noOflegs;
+  	structDisplay(*catptr);
 	// linked list
 
 	struct Node *head = NULL;
