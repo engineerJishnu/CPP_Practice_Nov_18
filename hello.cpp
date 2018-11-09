@@ -1,144 +1,148 @@
-//  file name : hello.cpp
-//  g++ -g -Wall -o hello hello.cpp
-// ./hello
+	//  file name : hello.cpp
+	//  for compiling the program use....g++ -g -Wall -o hello hello.cpp
+	// to run the program use...../hello
 
-//-----all the headers
+	//-----all the headers
 
-#include <cstdio>
-#include <iostream>
-#include <string>
-#include <memory>
-#include <cstdlib>
+	#include <cstdio> // for printf()
+	#include <iostream>
+	#include <string>
+	#include <memory> // for unique_ptr
+	#include <cstdlib> // for malloc()
+	#include <thread>
 
-//function body
+	//function body
 
-void display(const char *text){
-	std::cout << text << std::endl;
-}
-
-//class
-
-class classParent{
-	private:
-		std::string name;
-		unsigned int age;
-	public:
-		classParent();
-		~classParent();
-		void resultDisplay();
-};
-
-// constructor
-
-classParent::classParent(){
-	//create the object1
-}
-
-// destructor
-
-classParent::~classParent(){
-	//destroys the object
-}
-
-//methods
-
-void classParent::resultDisplay(){
-	std::string Name;
-	unsigned int Age;
-
-	name = Name;
-	age = Age;
-
-	std::cout << "Please enter your name " << std::endl;
-	std::cin >> name;
-
-	std::cout << "Please enter your age " << std::endl;
-	std::cin >> age;
-
-	std::cout << "Name : " << name << "  Age : " << age << std::endl;
-}
-
-// an example of an struct
-
-struct animalStruct {
-	int noOflegs;
-};
-
-// functions for the struct
-void structDisplay(animalStruct name) {
-
-	std::cout << "\nDisplaying information" << std::endl;
-	std::cout << "The animal has " << name.noOflegs << " legs."  <<std::endl;
-}
-// linked list
-
-struct Node {
-	int data;
-	struct Node *next;
-};
-
-void printlist(struct Node *n) {
-	std::cout << "This is an example of linear linked list using struct" << std::endl;
-	while(n!= NULL) {
-		std::cout << n -> data << std::endl;
-		n = n -> next;
+	void display(const char *text){
+		std::cout << text << std::endl;
 	}
-}
 
-// main - start of the programs
+	//class
 
- int main() {
+	class classParent{
+		private:
+			std::string name;
+			unsigned int age;
+		public:
+			classParent();
+			~classParent();
+			void resultDisplay();
+	};
 
-	system("clear"); // clears the screen
-	printf("Hello world!\n");
-	std::cout << "C++ is a tough Programming Language." << std::endl;
-	display ("C++ is a very tough language and is enjoyable one. This done using function.");
-	
-	 // creating an object for class 
-	classParent object1;
-	object1.resultDisplay();
+	// constructor
 
-  	std::unique_ptr<classParent> object2 (new classParent);
-	object2 -> resultDisplay();
+	classParent::classParent(){
+		//create the object1
+	}
 
-	// struct example
+	// destructor
 
-	struct animalStruct dog;
-	std::cout << "Enter the number of legs dog has.." << std::endl;
-	std::cin >> dog.noOflegs;
-	structDisplay(dog);
+	classParent::~classParent(){
+		//destroys the object
+	}
 
-	// struct with pointers
+	//methods
 
-	struct animalStruct *catptr, cat;
-	catptr = &cat;
-	std::cout << "Enter the number of legs cat has.." << std::endl;
-  	std::cin >> catptr -> noOflegs;
-  	structDisplay(*catptr);
+	void classParent::resultDisplay(){
+		std::string Name;
+		unsigned int Age;
+
+		name = Name;
+		age = Age;
+
+		std::cout << "Please enter your name " << std::endl;
+		std::cin >> name;
+
+		std::cout << "Please enter your age " << std::endl;
+		std::cin >> age;
+
+		std::cout << "Name : " << name << "  Age : " << age << std::endl;
+	}
+
+	// an example of an struct
+
+	struct animalStruct {
+		int noOflegs;
+	}; // do not forget put ";" after "}"
+
+	// functions for the struct
+	void structDisplay(animalStruct name) {
+		std::cout << "\nDisplaying information" << std::endl;
+		std::cout << "The animal has " << name.noOflegs << " legs."  <<std::endl;
+	}
 	// linked list
 
-	struct Node *head = NULL;
-	struct Node *second = NULL;
-	struct Node *third = NULL;
+	struct Node {
+		int data;
+		struct Node *next;
+	};
 
-	head = (struct Node*) malloc(sizeof(struct Node));
-	second = (struct Node*) malloc(sizeof(struct Node));
-	third = (struct Node*) malloc(sizeof(struct Node));
+	void printlist(struct Node *n) {
+		std::cout << "This is an example of linear linked list using struct" << std::endl;
+		while(n!= NULL) {
+			std::cout << "the data is " << n -> data << std::endl;
+			n = n -> next;
+		}
+	}
 
-	head -> data = 1;
-	head -> next = second;
+	// main - start of the programs
 
-	second -> data = 2;
-	second -> next = third;
+	 int main() {
 
-	third -> data = 3;
-	third -> next = NULL;
+		system("clear"); // clears the screen
+		printf("Hello world!\n");
+		std::cout << "C++ is a tough Programming Language." << std::endl;
+		display ("C++ is a very tough language and is enjoyable one. This done using function.");
 
-	printlist(head);
+		 // creating an object for class
+			classParent object1;
+			object1.resultDisplay();
 
-	free(head);
-	free(second);
-	free(third);
+	 		std::this_thread::sleep_for(std::chrono::milliseconds(2000)); // take a deep breathe
 
-	return 0;
-}
+	  	std::unique_ptr<classParent> object2 (new classParent);
+			object2 -> resultDisplay();   // pointer
+
+			// struct example
+
+			struct animalStruct dog;
+			std::cout << "Enter the number of legs dog has.." << std::endl;
+			std::cin >> dog.noOflegs;
+			structDisplay(dog);
+
+			// struct with pointers
+
+			struct animalStruct *catptr, cat;
+			catptr = &cat; // address of struct cat is stored in catptr
+			std::cout << "Enter the number of legs cat has.." << std::endl;
+		  std::cin >> catptr -> noOflegs;
+		  structDisplay(*catptr);
+			// linked list
+
+			struct Node *head = NULL;
+			struct Node *second = NULL;
+			struct Node *third = NULL;
+
+			//head = (struct Node*) malloc(sizeof(struct Node));
+			head = new struct Node;
+			second = (struct Node*) malloc(sizeof(struct Node));
+			third = (struct Node*) malloc(sizeof(struct Node));
+
+			head -> data = 10;
+			head -> next = second;
+
+			second -> data = 20;
+			second -> next = third;
+
+			third -> data = 30;
+			third -> next = NULL;
+
+			printlist(head);
+
+			//free(head);
+			delete head;
+			free(second);
+			free(third);
+
+			return 0;
+	}
