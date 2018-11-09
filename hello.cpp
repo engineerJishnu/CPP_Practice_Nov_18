@@ -125,6 +125,11 @@
 
 			//head = (struct Node*) malloc(sizeof(struct Node));
 			head = new struct Node;
+			if (!head)
+			{
+   			std::cout << "Memory allocation failed\n";
+			}
+			
 			second = (struct Node*) malloc(sizeof(struct Node));
 			third = (struct Node*) malloc(sizeof(struct Node));
 
